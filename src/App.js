@@ -1,25 +1,72 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useRouteMatch,
+  useHistory,
+} from "react-router-dom"
+
+const Note = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Notes</h1>
     </div>
-  );
+  )
 }
 
-export default App;
+const Home = () => {
+  return (
+    <div>
+      <h1>Home</h1> 
+    </div>
+  )
+}
+
+const User = () => {
+  return (
+    <div>
+      <h1>Users</h1>
+    </div>
+  )
+}
+
+
+const App = () => {
+
+
+  return (
+    <Router>
+      <div>
+        <Link to="/">home</Link>
+        <Link to="/notes">notes</Link>
+        <Link to="/users">users</Link>
+      </div>
+
+      <Switch>
+        <Route path="/notes">
+          <Note/>
+        </Route>
+        <Route path="/users">
+          <User/>
+        </Route>
+        <Route>
+          <Home/>
+        </Route>
+      </Switch>
+    </Router>
+  )
+}
+
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('root')
+)
+
+export default App
